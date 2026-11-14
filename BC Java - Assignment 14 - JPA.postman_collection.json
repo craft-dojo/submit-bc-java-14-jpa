@@ -164,6 +164,37 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Get all customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"test product\",\r\n    \"price\": 1234,\r\n    \"categoryId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint9}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint9}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "variable": [
@@ -178,6 +209,10 @@
     {
       "key": "endpoint2",
       "value": "products"
+    },
+    {
+      "key": "endpoint9",
+      "value": "customers"
     }
   ]
 }
