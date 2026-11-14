@@ -195,6 +195,37 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create a new user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"ngkhang\",\r\n    \"email\": \"khang.nguyen@example.com\",\r\n    \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint7}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint7}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "variable": [
@@ -209,6 +240,10 @@
     {
       "key": "endpoint2",
       "value": "products"
+    },
+    {
+      "key": "endpoint7",
+      "value": "users"
     },
     {
       "key": "endpoint9",
