@@ -273,6 +273,63 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Search by author",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint3}}/search?author=sen",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint3}}",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "author",
+                  "value": "sen"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search with range price",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint3}}/search?minPrice=90000&maxPrice=200000",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint3}}",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "minPrice",
+                  "value": "90000"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "200000"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "variable": [
@@ -289,12 +346,28 @@
       "value": "products"
     },
     {
+      "key": "endpoint3",
+      "value": ""
+    },
+    {
+      "key": "endpoint4",
+      "value": ""
+    },
+    {
+      "key": "endpoint5",
+      "value": ""
+    },
+    {
+      "key": "endpoint6",
+      "value": ""
+    },
+    {
       "key": "endpoint7",
       "value": "users"
     },
     {
       "key": "endpoint8",
-      "value": "orders"
+      "value": ""
     },
     {
       "key": "endpoint9",

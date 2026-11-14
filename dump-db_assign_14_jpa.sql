@@ -21,7 +21,34 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'bb1bc81b-dc12-11f1-8dfa-86a73f771fae:1-71';
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'bb1bc81b-dc12-11f1-8dfa-86a73f771fae:1-79';
+
+--
+-- Table structure for table `books`
+--
+
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `books` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `author` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `title` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `books`
+--
+
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (1,'Vuong Hong Sen','Sai Gon nam xua',120000.00),(2,'Nguyen Ngoc Tu','Song',97000.00),(3,'Nguyen Ngoc Tu','Yeu nguoi ngong nui',56000.00);
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `customers`
@@ -172,4 +199,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-14 23:12:15
+-- Dump completed on 2026-11-15  1:29:58
