@@ -226,6 +226,53 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get orders sort by total amount with limit",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint8}}/top",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint8}}",
+                "top"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get orders with created at",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint8}}/search?createdAt=2026-11-01",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint8}}",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "createdAt",
+                  "value": "2026-11-01"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "variable": [
@@ -244,6 +291,10 @@
     {
       "key": "endpoint7",
       "value": "users"
+    },
+    {
+      "key": "endpoint8",
+      "value": "orders"
     },
     {
       "key": "endpoint9",
