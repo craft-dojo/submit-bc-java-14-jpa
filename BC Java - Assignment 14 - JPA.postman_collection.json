@@ -1,0 +1,68 @@
+{
+  "info": {
+    "_postman_id": "f6699255-ac33-4daa-9b28-fb5c69450f8d",
+    "name": "BC Java - Assignment 14 - JPA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31191982"
+  },
+  "item": [
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "Get list students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint1}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint1}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a new student",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"bich.tran@example.com\",\r\n    \"name\": \"Tran Thi Bich\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint1}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint1}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "endpoint1",
+      "value": "students"
+    }
+  ]
+}
