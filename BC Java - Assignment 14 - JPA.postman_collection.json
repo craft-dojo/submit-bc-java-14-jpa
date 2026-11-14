@@ -53,6 +53,117 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get list products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint2}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint2}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get product by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint2}}/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint2}}",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update product",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"iPhone 18 Pro\",\r\n    \"price\": 800.9,\r\n    \"description\": \"Best choice\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint2}}/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint2}}",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete product by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint2}}/3",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint2}}",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a new product",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"iPhone Dual\",\r\n    \"price\": 999.9,\r\n    \"description\": \"Best perfomance\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint2}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint2}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "variable": [
@@ -63,6 +174,10 @@
     {
       "key": "endpoint1",
       "value": "students"
+    },
+    {
+      "key": "endpoint2",
+      "value": "products"
     }
   ]
 }
