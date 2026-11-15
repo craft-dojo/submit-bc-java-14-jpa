@@ -29,4 +29,16 @@ public class StudentController {
         BaseResponse res = BaseResponse.success(studentService.insertStudent(request), "Created successful", null);
         return ResponseEntity.ok(res);
     }
+
+    @PostMapping("/{id}/courses/{courseId}")
+    public ResponseEntity<BaseResponse> enrollCourse(@PathVariable int id, @PathVariable int courseId) {
+        BaseResponse res = BaseResponse.success(studentService.enrollCourse(id, courseId), null, null);
+        return ResponseEntity.ok(res);
+    }
+
+    @GetMapping("/{id}/courses")
+    public ResponseEntity<BaseResponse> getCourses(@PathVariable int id) {
+        BaseResponse res = BaseResponse.success(studentService.getCoursesByStudentId(id), null, null);
+        return ResponseEntity.ok(res);
+    }
 }

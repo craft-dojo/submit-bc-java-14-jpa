@@ -1,10 +1,10 @@
 package com.cybersoft.assign_14_jpa.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "students")
 @Getter
@@ -20,4 +20,19 @@ public class StudentEntity {
     private String name;
     private String email;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<CourseEntity> courses = new ArrayList<>();
+
+    public void addCourse(CourseEntity course) {
+        this.courses.add(course);
+        course.getStudents().add(this);
+    }
+
+    public void removeCourse(CourseEntity course) {
+        this.courses.remove(course);
+        course.getStudents().remove(this);
+    }
 }

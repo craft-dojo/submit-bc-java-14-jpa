@@ -51,6 +51,45 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Enrolling course",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint1}}/1/courses/3",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint1}}",
+                "1",
+                "courses",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get list courses by student Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint1}}/1/courses",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint1}}",
+                "1",
+                "courses"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -438,6 +477,37 @@
                 "{{endpoint4}}",
                 "2",
                 "products"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Create a new course",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Java and Spring Boot\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint5}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint5}}"
               ]
             }
           },

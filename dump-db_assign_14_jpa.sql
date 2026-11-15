@@ -21,7 +21,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'bb1bc81b-dc12-11f1-8dfa-86a73f771fae:1-94';
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'bb1bc81b-dc12-11f1-8dfa-86a73f771fae:1-116';
 
 --
 -- Table structure for table `books`
@@ -73,6 +73,30 @@ LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` VALUES (3,'Laptop'),(4,'PC'),(1,'Phone'),(2,'Tablet');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `courses`
+--
+
+DROP TABLE IF EXISTS `courses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `courses` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `courses`
+--
+
+LOCK TABLES `courses` WRITE;
+/*!40000 ALTER TABLE `courses` DISABLE KEYS */;
+INSERT INTO `courses` VALUES (1,'UI/UX Design'),(2,'Testing'),(3,'DevOps'),(4,'Java and Spring Boot');
+/*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -187,6 +211,35 @@ INSERT INTO `products` VALUES (1,'Product 1',100.10,'Test product 1',1),(2,'Dell
 UNLOCK TABLES;
 
 --
+-- Table structure for table `student_course`
+--
+
+DROP TABLE IF EXISTS `student_course`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `student_course` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `student_id` int NOT NULL,
+  `course_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_sc_student` (`student_id`),
+  KEY `fk_sc_course` (`course_id`),
+  CONSTRAINT `fk_sc_course` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
+  CONSTRAINT `fk_sc_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_course`
+--
+
+LOCK TABLES `student_course` WRITE;
+/*!40000 ALTER TABLE `student_course` DISABLE KEYS */;
+INSERT INTO `student_course` VALUES (2,2,1),(3,3,2),(4,3,3),(6,1,1),(7,1,2),(8,1,3);
+/*!40000 ALTER TABLE `student_course` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `students`
 --
 
@@ -208,7 +261,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'Nguyen Khang','khang.nguyen@example.com'),(2,'Nguyen Van An','an.nguyen@example.com'),(3,'ran Thi Bich','bich.tran@example.com');
+INSERT INTO `students` VALUES (1,'Nguyen Khang','khang.nguyen@example.com'),(2,'Nguyen Van An','an.nguyen@example.com'),(3,'Tran Thi Bich','bich.tran@example.com');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,4 +307,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-15 13:15:15
+-- Dump completed on 2026-11-15 15:53:18
