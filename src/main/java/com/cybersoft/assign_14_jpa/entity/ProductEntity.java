@@ -1,9 +1,6 @@
 package com.cybersoft.assign_14_jpa.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -22,4 +19,8 @@ public class ProductEntity {
     private String name;
     private BigDecimal price;
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private CategoryEntity category;
 }

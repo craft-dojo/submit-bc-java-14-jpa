@@ -21,7 +21,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'bb1bc81b-dc12-11f1-8dfa-86a73f771fae:1-81';
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'bb1bc81b-dc12-11f1-8dfa-86a73f771fae:1-94';
 
 --
 -- Table structure for table `books`
@@ -48,6 +48,31 @@ LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
 INSERT INTO `books` VALUES (1,'Vuong Hong Sen','Sai Gon nam xua',120000.00),(2,'Nguyen Ngoc Tu','Song',97000.00),(3,'Nguyen Ngoc Tu','Yeu nguoi ngong nui',56000.00);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (3,'Laptop'),(4,'PC'),(1,'Phone'),(2,'Tablet');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -143,9 +168,12 @@ CREATE TABLE `products` (
   `name` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `category_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `name` (`name`),
+  KEY `fk_products_category` (`category_id`),
+  CONSTRAINT `fk_products_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +182,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Product 1',100.10,'Test product 1'),(2,'iPhone 18 Pro',800.90,'Best choice');
+INSERT INTO `products` VALUES (1,'Product 1',100.10,'Test product 1',1),(2,'Dell Superpower V2',4100.00,'Integrated AI',3),(3,'iPad Air',1200.90,'Best perfomance',2),(4,'Dell Superpower',4000.00,'Integrated AI',3);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,4 +254,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-15  9:46:02
+-- Dump completed on 2026-11-15 13:15:15

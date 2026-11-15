@@ -17,6 +17,7 @@ public class ProductResponseDTO {
     private String name;
     private BigDecimal price;
     private String description;
+    private CategoryResponseDTO category;
 
     public static ProductResponseDTO mapToDTO(ProductEntity entity) {
         return ProductResponseDTO.builder()
@@ -24,6 +25,7 @@ public class ProductResponseDTO {
                 .name(entity.getName())
                 .price(entity.getPrice())
                 .description(entity.getDescription())
+                .category(CategoryResponseDTO.mapToDTO(entity.getCategory()))
                 .build();
     }
 }

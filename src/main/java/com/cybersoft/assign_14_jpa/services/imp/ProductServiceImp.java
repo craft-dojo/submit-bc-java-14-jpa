@@ -1,6 +1,8 @@
 package com.cybersoft.assign_14_jpa.services.imp;
 
+import com.cybersoft.assign_14_jpa.entity.CategoryEntity;
 import com.cybersoft.assign_14_jpa.entity.ProductEntity;
+import com.cybersoft.assign_14_jpa.repository.CategoryRepository;
 import com.cybersoft.assign_14_jpa.repository.ProductRepository;
 import com.cybersoft.assign_14_jpa.request.InsertProductRequestDTO;
 import com.cybersoft.assign_14_jpa.request.UpdateProductRequestDTO;
@@ -17,10 +19,12 @@ import java.util.List;
 public class ProductServiceImp implements ProductService {
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public ProductServiceImp(ProductRepository productRepository) {
+    public ProductServiceImp(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -40,10 +44,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public void deleteProductById(int id) {
-        ProductEntity productExisting = productRepository.findById(id).orElse(null);
-        if (productExisting != null) {
-            productRepository.delete(productExisting);
-        }
+        productRepository.findById(id).ifPresent(productRepository::delete);
     }
 
     @Override
@@ -52,12 +53,18 @@ public class ProductServiceImp implements ProductService {
             throw new EntityExistsException("Product with name " + request.getName() + " already exists");
         }
 
+        CategoryEntity categoryExist = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new EntityExistsException("Category with id " + request.getCategoryId() + " does " +
+                        "not exist"));
+
         ProductEntity newProduct = ProductEntity.builder()
                 .name(request.getName())
                 .price(request.getPrice())
                 .description(request.getDescription())
+                .category(categoryExist)
                 .build();
 
+        categoryExist.getProducts().add(newProduct);
         ProductEntity createdProduct = productRepository.save(newProduct);
         return ProductResponseDTO.mapToDTO(createdProduct);
     }
@@ -72,14 +79,16 @@ public class ProductServiceImp implements ProductService {
             throw new EntityExistsException("Product with name " + request.getName() + " already exists");
         }
 
-        ProductEntity updateProduct = ProductEntity.builder()
-                .id(productExisting.getId())
-                .name(request.getName())
-                .price(request.getPrice())
-                .description(request.getDescription())
-                .build();
+        CategoryEntity categoryExist = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new EntityExistsException("Category with id " + request.getCategoryId() + " does " +
+                        "not exist"));
 
-        ProductEntity updatedProduct = productRepository.save(updateProduct);
+        productExisting.setName(request.getName());
+        productExisting.setPrice(request.getPrice());
+        productExisting.setDescription(request.getDescription());
+        productExisting.setCategory(categoryExist);
+
+        ProductEntity updatedProduct = productRepository.save(productExisting);
         return ProductResponseDTO.mapToDTO(updatedProduct);
     }
 }

@@ -99,7 +99,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"iPhone 18 Pro\",\r\n    \"price\": 800.9,\r\n    \"description\": \"Best choice\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Dell Superpower V2\",\r\n    \"price\": 4100,\r\n    \"description\": \"Integrated AI\",\r\n    \"categoryId\": 3\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -144,7 +144,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"iPhone Dual\",\r\n    \"price\": 999.9,\r\n    \"description\": \"Best perfomance\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Dell Superpower\",\r\n    \"price\": 4000,\r\n    \"description\": \"Integrated AI\",\r\n    \"categoryId\": 3\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -360,6 +360,84 @@
                   "key": "sort",
                   "value": "salary,desc"
                 }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get list product by category id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint4}}/1/products",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint4}}",
+                "1",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a new category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"PC\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint4}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint4}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a new product by category id",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"iPad Air\",\r\n    \"price\": 1200.9,\r\n    \"description\": \"Best perfomance\",\r\n    \"categoryId\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint4}}/2/products",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint4}}",
+                "2",
+                "products"
               ]
             }
           },
