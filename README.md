@@ -1,5 +1,9 @@
 # BC Java - Assignment 14 - JPA
 
+![Status](https://img.shields.io/badge/status-completed-brightgreen)
+![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?logo=intellij-idea&logoColor=white)
+
 * [BC Java - Assignment 14 - JPA](#bc-java---assignment-14---jpa)
     * [Prerequisites](#prerequisites)
         * [Getting Start](#getting-start)
@@ -24,6 +28,20 @@
 - MySQL
 
 ### Getting Start
+
+- Bước 1: Chạy [docker-compose.yaml](docker-compose.yaml) để cài đặt môi trường cho MySQL
+- Bước 2: Connect database với DBBearer/DataGrip và chạy [dump-db_assign_14_jpa.sql](dump-db_assign_14_jpa.sql) để tạo
+  schema và sample data
+
+    ```text
+    port: 3307
+    user: root
+    password: Root@1234
+    ```
+
+- Bước 3: Start project
+- Bước 4: Import [Postman Collection](BC%20Java%20-%20Assignment%2014%20-%20JPA.postman_collection.json) vào Postman để
+  test APIs.
 
 ### Project Structure
 
@@ -102,7 +120,7 @@
 - API:
     - `POST /students` → thêm student.
     - `POST /courses` → thêm course.
-    - `POST /students/{id}/courses/{courseId}`` → đăng ký khóa học cho student.
+    - `POST /students/{id}/courses/{courseId}` → đăng ký khóa học cho student.
     - `GET /students/{id}/courses` → lấy danh sách khóa học của 1 student.
 
 ### 6. Pagination & Sorting

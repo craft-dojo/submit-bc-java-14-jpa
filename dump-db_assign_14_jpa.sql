@@ -23,6 +23,11 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 
 SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'bb1bc81b-dc12-11f1-8dfa-86a73f771fae:1-116';
 
+CREATE DATABASE IF NOT EXISTS db_assign_14_jpa
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+USE db_assign_14_jpa;
+
 --
 -- Table structure for table `books`
 --
@@ -86,7 +91,7 @@ CREATE TABLE `courses` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +100,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'UI/UX Design'),(2,'Testing'),(3,'DevOps'),(4,'Java and Spring Boot');
+INSERT INTO `courses` VALUES (1,'UI/UX Design'),(2,'Testing'),(3,'DevOps'),(4,'Java and Spring Boot'),(5,'React and Next.js'),(6,'Database Design');
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,9 +229,9 @@ CREATE TABLE `student_course` (
   PRIMARY KEY (`id`),
   KEY `fk_sc_student` (`student_id`),
   KEY `fk_sc_course` (`course_id`),
-  CONSTRAINT `fk_sc_course` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
-  CONSTRAINT `fk_sc_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_sc_course` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_sc_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +240,7 @@ CREATE TABLE `student_course` (
 
 LOCK TABLES `student_course` WRITE;
 /*!40000 ALTER TABLE `student_course` DISABLE KEYS */;
-INSERT INTO `student_course` VALUES (2,2,1),(3,3,2),(4,3,3),(6,1,1),(7,1,2),(8,1,3);
+INSERT INTO `student_course` (`student_id`, `course_id`) VALUES (1,1),(1,2),(1,3),(2,1),(3,2),(3,3),(4,4),(4,5),(5,4),(5,5);
 /*!40000 ALTER TABLE `student_course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +257,7 @@ CREATE TABLE `students` (
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +266,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'Nguyen Khang','khang.nguyen@example.com'),(2,'Nguyen Van An','an.nguyen@example.com'),(3,'Tran Thi Bich','bich.tran@example.com');
+INSERT INTO `students` VALUES (1,'Nguyen Khang','khang.nguyen@example.com'),(2,'Nguyen Van An','an.nguyen@example.com'),(3,'Tran Thi Bich','bich.tran@example.com'),(4,'Le Van Cuong','cuong.le@example.com'),(5,'Pham Thi Dung','dung.pham@example.com'),(6,'Hoang Minh Em','em.hoang@example.com');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
