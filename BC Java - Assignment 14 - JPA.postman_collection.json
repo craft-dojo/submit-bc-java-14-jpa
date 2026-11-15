@@ -330,6 +330,42 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "Get list empolyees with pagination and sort",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/{{endpoint6}}?page=0&size=5&sort=salary,desc",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "{{endpoint6}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "salary,desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "variable": [
@@ -347,19 +383,19 @@
     },
     {
       "key": "endpoint3",
-      "value": ""
+      "value": "books"
     },
     {
       "key": "endpoint4",
-      "value": ""
+      "value": "categories"
     },
     {
       "key": "endpoint5",
-      "value": ""
+      "value": "courses"
     },
     {
       "key": "endpoint6",
-      "value": ""
+      "value": "employees"
     },
     {
       "key": "endpoint7",
@@ -367,7 +403,7 @@
     },
     {
       "key": "endpoint8",
-      "value": ""
+      "value": "orders"
     },
     {
       "key": "endpoint9",
